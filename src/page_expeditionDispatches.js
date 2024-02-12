@@ -41,17 +41,20 @@ const pageExpeditionDispatches = () => {
     // Nanook Stats -----------------------------------------------------------------------------------------------------------
     window.onload = async () => {
         // Collect html elements
-        const speedTag = document.querySelector('[w-el="speed"]');
-        const bearingTag = document.querySelector('[w-el="bearing"]');
-        const distanceTag = document.querySelector('[w-el="distance"]');
-        const durationTag = document.querySelector('[w-el="duration"]');
+        const speedTag = document.querySelector('[z6z="speed"]');
+        const bearingTag = document.querySelector('[z6z="bearing"]');
+        const distanceTag = document.querySelector('[z6z="distance"]');
+        const durationTag = document.querySelector('[z6z="duration"]');
 
         // Update stats
-        await Wized.request.execute("GetNanookStats");
-        const apiSpeed = await Wized.data.get("r.2.d.data.speed_kts");
-        const apiBearing = await Wized.data.get("r.2.d.data.bearing");
-        const apiDistance = await Wized.data.get("r.2.d.data.distance_km");
-        const apiDuration = await Wized.data.get("r.2.d.data.duration");
+        const response = await fetch("https://api.z6z.co/api/project-zero");
+        const data = await response.json();
+
+        const apiSpeed = data.speed_kts;
+        const apiBearing = data.bearing;
+        const apiDistance = data.distance_km;
+        const apiDuration = data.duration;
+
         speedTag.innerText = apiSpeed;
         bearingTag.innerText = apiBearing;
         distanceTag.innerText = apiDistance;
