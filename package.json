@@ -1,11 +1,30 @@
 {
-    "name": "projectzero",
-    "version": "1.0.0",
-    "description": "Project Zero",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "Chinmay Kulkarni",
-    "license": "ISC"
+  "name": "vite-javascript-webflow",
+  "version": "0.0.1",
+  "author": "armandsalle <armand.salle@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rimraf -rf dist",
+    "lint:fix": "eslint ./src --ext .js,.jsx --fix"
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "vite": "^2.7.2",
+    "vite-plugin-eslint": "^1.3.0"
+  },
+  "dependencies": {
+    "@splidejs/splide": "^4.1.4",
+    "@studio-freight/lenis": "^1.0.35",
+    "gsap": "^3.12.5",
+    "split-type": "^0.3.4"
+  }
 }
