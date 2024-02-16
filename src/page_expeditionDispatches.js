@@ -1,16 +1,15 @@
 const pageExpeditionDispatches = () => {
-    // Animations ------------------------------------------------------------------------------------------------------------
+    // Register plugins
     gsap.registerPlugin(CustomEase);
     CustomEase.create("ease_pz", "M0,0 C0,0.24 0.08,1 1,1 ");
 
-    function init() {
-        // Split Texts
+    const animations = () => {
         const st_heroHeading = new SplitType(".section_heading h2", {
             types: "words",
         });
 
-        // Animation
         gsap.set(".section_heading-title-wrapper", { opacity: 1 });
+
         const tl_page = gsap.timeline();
         tl_page
             .to(
@@ -32,14 +31,9 @@ const pageExpeditionDispatches = () => {
                 0.4
             )
             .to(".cursor_wrapper", 0.5, { opacity: 1 }, 0);
-    }
+    };
 
-    window.addEventListener("load", function (event) {
-        init();
-    });
-
-    // Nanook Stats -----------------------------------------------------------------------------------------------------------
-    window.onload = async () => {
+    const updateNanookStats = async () => {
         // Collect html elements
         const speedTag = document.querySelector('[z6z="speed"]');
         const bearingTag = document.querySelector('[z6z="bearing"]');
@@ -59,6 +53,12 @@ const pageExpeditionDispatches = () => {
         bearingTag.innerText = apiBearing;
         distanceTag.innerText = apiDistance;
         durationTag.innerText = apiDuration;
+    };
+
+    // Call functions
+    window.onload = async () => {
+        updateNanookStats();
+        animations();
     };
 };
 
