@@ -3,6 +3,7 @@ import pageGlobal from './pages/global'
 import pageClimateImportance from './pages/page_climateImportance'
 import pageExpeditionDispatches from './pages/page_expeditionDispatches'
 import pageHome from './pages/page_home'
+import pageJourney from './pages/page_journey'
 
 // Global
 pageGlobal()
@@ -15,7 +16,7 @@ if (window.location.pathname === '/') {
 } else if (window.location.pathname === '/expedition-dispatches') {
   pageExpeditionDispatches()
 } else if (window.location.pathname === '/journey') {
-  console.log('Journey Page')
+  pageJourney()
 } else if (window.location.pathname === '/series') {
   console.log('Series Page')
 }
