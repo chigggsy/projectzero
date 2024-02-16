@@ -2,6 +2,7 @@ import Splide from '@splidejs/splide'
 import gsap from 'gsap'
 import CustomEase from 'gsap/CustomEase'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import $ from 'jquery'
 import SplitType from 'split-type'
 import '@splidejs/splide/css/core'
 

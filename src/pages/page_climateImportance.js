@@ -1,5 +1,6 @@
 import gsap from 'gsap'
 import CustomEase from 'gsap/CustomEase'
+import $ from 'jquery'
 import SplitType from 'split-type'
 
 const pageClimateImportance = () => {

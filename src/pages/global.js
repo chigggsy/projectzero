@@ -1,14 +1,15 @@
 import Lenis from '@studio-freight/lenis'
 import gsap from 'gsap'
 import CustomEase from 'gsap/CustomEase'
+import $ from 'jquery'
 
 const pageGlobal = () => {
   // Declaring the global functions
   const globalCustomCursor = () => {
     // Cursor rotating and following the mouse
     let $compass = $('.compass_container')
-    let x = 0
-    let y = 0
+    // let x = 0
+    // let y = 0
     let mouseX = 0
     let mouseY = 0
     let speed = 0
