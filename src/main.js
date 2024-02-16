@@ -1,16 +1,16 @@
 import './styles/style.css'
 import pageGlobal from './pages/global'
+import pageClimateImportance from './pages/page_climateImportance'
 import pageHome from './pages/page_home'
 
 // Global
 pageGlobal()
-pageHome()
 
 // Page specific
 if (window.location.pathname === '/') {
-  console.log('Home Page')
+  pageHome()
 } else if (window.location.pathname === '/climate-importance') {
-  console.log('Climate Importance Page')
+  pageClimateImportance()
 } else if (window.location.pathname === '/expedition-dispatches') {
   console.log('Expedition Dispatches Page')
 } else if (window.location.pathname === '/journey') {

@@ -3,11 +3,10 @@ import CustomEase from 'gsap/CustomEase'
 import SplitType from 'split-type'
 
 const pageClimateImportance = () => {
-  // Animations ------------------------------------------------------------------------------------------------------------
-  gsap.registerPlugin(CustomEase)
-  CustomEase.create('ease_pz', 'M0,0 C0,0.24 0.08,1 1,1 ')
-
-  function init() {
+  const animation = () => {
+    // Animations ------------------------------------------------------------------------------------------------------------
+    gsap.registerPlugin(CustomEase)
+    CustomEase.create('ease_pz', 'M0,0 C0,0.24 0.08,1 1,1 ')
     // Split Texts
     const st_heroHeading = new SplitType('.section_heading h2', {
       types: 'words',
@@ -37,10 +36,6 @@ const pageClimateImportance = () => {
       )
       .to('.cursor_wrapper', 0.5, { opacity: 1 }, 0)
   }
-
-  window.addEventListener('load', function () {
-    init()
-  })
 
   // Accordion ------------------------------------------------------
   $(document).ready(function () {
@@ -85,6 +80,8 @@ const pageClimateImportance = () => {
       }
     })
   })
+
+  animation()
 }
 
 export default pageClimateImportance
