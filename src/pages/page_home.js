@@ -1,96 +1,127 @@
 // Importing plugins
 import gsap from 'gsap'
 import CustomEase from 'gsap/CustomEase'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SplitType from 'split-type'
 
 // Declaration
 const pageHome = () => {
   const animations = () => {
     gsap.registerPlugin(CustomEase)
+    gsap.registerPlugin(ScrollTrigger)
+
     CustomEase.create('ease_pz', 'M0,0 C0,0.24 0.08,1 1,1 ')
 
-    // Split Texts
-    const st_loadingLine = new SplitType('.preloader_line', {
-      types: 'words',
-    })
-    const st_heroHeading = new SplitType('.section_hero-heading-container h1', {
-      types: 'words',
-    })
+    const anim_intro = () => {
+      // Split Texts
+      const st_loadingLine = new SplitType('.preloader_line', {
+        types: 'words',
+      })
+      const st_heroHeading = new SplitType(
+        '.section_hero-heading-container h1',
+        {
+          types: 'words',
+        }
+      )
 
-    // Animation
-    const tl_preloader = gsap.timeline()
-    tl_preloader
-      .set('.preloader_statement', { opacity: 1 })
-      .from(
-        st_loadingLine.words,
-        2,
-        { y: 30, opacity: 0, stagger: 0.03, ease: 'power3.inOut' },
-        0
-      )
-      .to(
-        st_loadingLine.words,
-        2,
-        { y: -30, opacity: 0, stagger: 0.03, ease: 'power3.inOut' },
-        5
-      )
-      .to('.section_preloader', 0.5, { opacity: 0 }, 7)
-      .to('.page-wrapper', 0, { overflow: 'visible', height: 'auto' }, 7)
-      .to('.section_preloader', 0, { display: 'none' }, 7)
-      .to('.cursor_wrapper', 0.5, { opacity: 1 }, 7) // Preloader animation finished
-      .from(
-        '.nav_link-item-wrapper',
-        1,
-        { opacity: 0, stagger: 0.07, ease: 'ease_pz' },
-        7
-      )
-      .from(
-        '.countdown_item',
-        1,
-        { opacity: 0, stagger: 0.07, ease: 'power3.inOut' },
-        7
-      )
-      .from(
-        '.section_hero-image',
-        0.75,
-        { opacity: 0, scale: 1.75, ease: 'ease_pz' },
-        7
-      )
-      .from(
-        st_heroHeading.words,
-        1,
-        { y: 30, opacity: 0, stagger: 0.01, ease: 'power3.inOut' },
-        7
-      )
-      .from(
-        '.lottie_journey-home',
-        0.5,
-        { opacity: 0, ease: 'power3.inOut' },
-        7
-      )
-      .from(
-        '.form_launch-input-wrapper',
-        1,
-        { y: 25, opacity: 0, ease: 'ease_pz' },
-        7.5
-      )
-      .from(
-        '.form_launch .button',
-        1,
-        { y: 25, opacity: 0, ease: 'ease_pz' },
-        7.6
-      )
-      .from(
-        '.marquee_svg path',
-        0.7,
-        { y: '100%', stagger: 0.02, ease: 'ease_pz' },
-        7.5
-      )
-      .from(
-        '.is-hero-tag',
-        1,
-        { opacity: 0, stagger: 0.07, ease: 'power3.inOut' },
-        7.5
-      )
+      // Animation
+      const tl_preloader = gsap.timeline()
+      tl_preloader
+        .set('.preloader_statement', { opacity: 1 })
+        .from(
+          st_loadingLine.words,
+          2,
+          { y: 30, opacity: 0, stagger: 0.03, ease: 'power3.inOut' },
+          0
+        )
+        .to(
+          st_loadingLine.words,
+          2,
+          { y: -30, opacity: 0, stagger: 0.03, ease: 'power3.inOut' },
+          5
+        )
+        .to('.section_preloader', 0.5, { opacity: 0 }, 7)
+        .to('.page-wrapper', 0, { overflow: 'visible', height: 'auto' }, 7)
+        .to('.section_preloader', 0, { display: 'none' }, 7)
+        .to('.cursor_wrapper', 0.5, { opacity: 1 }, 7) // Preloader animation finished
+        .from(
+          '.nav_link-item-wrapper',
+          1,
+          { opacity: 0, stagger: 0.07, ease: 'ease_pz' },
+          7
+        )
+        .from(
+          '.countdown_item',
+          1,
+          { opacity: 0, stagger: 0.07, ease: 'power3.inOut' },
+          7
+        )
+        .from(
+          '.section_hero-image',
+          0.75,
+          { opacity: 0, scale: 1.75, ease: 'ease_pz' },
+          7
+        )
+        .from(
+          st_heroHeading.words,
+          1,
+          { y: 30, opacity: 0, stagger: 0.01, ease: 'power3.inOut' },
+          7
+        )
+        .from(
+          '.lottie_journey-home',
+          0.5,
+          { opacity: 0, ease: 'power3.inOut' },
+          7
+        )
+        .from(
+          '.form_launch-input-wrapper',
+          1,
+          { y: 25, opacity: 0, ease: 'ease_pz' },
+          7.5
+        )
+        .from(
+          '.form_launch .button',
+          1,
+          { y: 25, opacity: 0, ease: 'ease_pz' },
+          7.6
+        )
+        .from(
+          '.marquee_svg path',
+          0.7,
+          { y: '100%', stagger: 0.02, ease: 'ease_pz' },
+          7.5
+        )
+        .from(
+          '.is-hero-tag',
+          1,
+          { opacity: 0, stagger: 0.07, ease: 'power3.inOut' },
+          7.5
+        )
+    }
+    const anim_marquee = () => {
+      const el_marquee = document.querySelector('.section_marquee')
+      const clientY = el_marquee.getBoundingClientRect().y
+
+      const tl_marquee = gsap.timeline({
+        defaults: {
+          ease: 'none',
+        },
+        scrollTrigger: {
+          trigger: '.section_marquee',
+          start: `top ${clientY}px`,
+          end: 'bottom top',
+          scrub: true,
+          markers: true,
+        },
+      })
+      tl_marquee
+        .to('#marquee-1', { x: '-22%' }, 0)
+        .to('#marquee-2', { x: '-22%' }, 0)
+    }
+
+    anim_marquee()
+    anim_intro()
   }
 
   const summarySections = () => {
@@ -163,6 +194,8 @@ const pageHome = () => {
   animations()
   summarySections()
 }
+
+console.log('Testing at 13:59')
 
 // Activation
 export default pageHome

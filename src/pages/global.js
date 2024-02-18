@@ -1,6 +1,7 @@
 import Lenis from '@studio-freight/lenis'
 import gsap from 'gsap'
 import CustomEase from 'gsap/CustomEase'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import $ from 'jquery'
 
 const pageGlobal = () => {
@@ -138,18 +139,18 @@ const pageGlobal = () => {
   }
 
   const globalLenis = () => {
-    const lenis = new Lenis()
+    const lenisInit = () => {
+      const lenis = new Lenis()
 
-    /* lenis.on("scroll", (e) => {
-      console.log(e);
-  }); */
+      lenis.on('scroll', ScrollTrigger.update)
 
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000)
+      })
+
+      gsap.ticker.lagSmoothing(0)
     }
-
-    requestAnimationFrame(raf)
+    lenisInit()
   }
 
   const globalNav = () => {
