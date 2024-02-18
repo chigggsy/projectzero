@@ -112,7 +112,6 @@ const pageHome = () => {
           start: `top ${clientY}px`,
           end: 'bottom top',
           scrub: true,
-          markers: true,
         },
       })
       tl_marquee
@@ -120,6 +119,87 @@ const pageHome = () => {
         .to('#marquee-2', { x: '-22%' }, 0)
     }
 
+    const anim_summarySections = () => {
+      const firstSummaryText = document.querySelector(
+        '.is-item-01 .accordion_large-text'
+      )
+
+      const st_firstSummaryText = new SplitType(firstSummaryText, {
+        types: 'words',
+      })
+
+      const tl_summarySections = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.is-item-01',
+          start: 'top 65%',
+          toggleActions: 'play none none reset',
+          markers: true,
+        },
+      })
+
+      tl_summarySections
+        .from(
+          '.summary_accordion-item',
+          {
+            duration: 0.5,
+            opacity: 0,
+            stagger: 0.2,
+            ease: 'power3.inOut',
+          },
+          0
+        )
+        .from(
+          '.summary_accordion-item .accordion_item-title p',
+          {
+            duration: 0.5,
+            opacity: 0,
+            stagger: 0.2,
+            ease: 'power3.inOut',
+          },
+          0.5
+        )
+        .from(
+          '.summary_accordion-item .accordion_item-title h1',
+          {
+            duration: 0.5,
+            opacity: 0,
+            stagger: 0.2,
+            ease: 'power3.inOut',
+          },
+          0.5
+        )
+        .from(
+          st_firstSummaryText.words,
+          {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            stagger: 0.01,
+            ease: 'power3.inOut',
+          },
+          0.5
+        )
+        .from(
+          '.summary_accordion-item.is-item-01 .button',
+          {
+            duration: 1,
+            opacity: 0,
+            ease: 'power3.inOut',
+          },
+          0.5
+        )
+        .from(
+          '.summary_accordion-item.is-item-01 .button .text-style-button',
+          {
+            duration: 1,
+            opacity: 0,
+            ease: 'power3.inOut',
+          },
+          0.5
+        )
+    }
+
+    anim_summarySections()
     anim_marquee()
     anim_intro()
   }
@@ -194,8 +274,6 @@ const pageHome = () => {
   animations()
   summarySections()
 }
-
-console.log('Testing at 13:59')
 
 // Activation
 export default pageHome
