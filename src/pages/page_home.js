@@ -214,8 +214,7 @@ const pageHome = () => {
         scrollTrigger: {
           trigger: '.section_voyagers',
           start: 'top 70%',
-          toggleActions: 'play none none reset',
-          markers: true,
+          toggleActions: 'play none none none',
         },
       })
 
@@ -266,6 +265,29 @@ const pageHome = () => {
         )
     }
 
+    const anim_sponsors = () => {
+      const st_sponsorsMessage = new SplitType('.section_sponsors h3', {
+        types: 'words',
+      })
+
+      const tl_sponsors = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.section_sponsors',
+          start: 'top 70%',
+          toggleActions: 'play none none reset',
+          markers: true,
+        },
+      })
+
+      tl_sponsors.from(
+        st_sponsorsMessage.words,
+        1,
+        { y: 30, opacity: 0, stagger: 0.01, ease: 'power3.inOut' },
+        0
+      )
+    }
+
+    anim_sponsors()
     anim_voyagers()
     anim_intro()
     anim_marquee()
