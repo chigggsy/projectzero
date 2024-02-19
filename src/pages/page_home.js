@@ -143,7 +143,7 @@ const pageHome = () => {
         scrollTrigger: {
           trigger: '.is-item-01',
           start: 'top 65%',
-          toggleActions: 'play none none reverse', // change end to reverse for testing
+          toggleActions: 'play none none none', // change end to reverse for testing
         },
       })
 
@@ -153,7 +153,7 @@ const pageHome = () => {
           {
             duration: 1,
             opacity: 0,
-            scale: 0.75, //causing an issue where the map disappears or changes colour? figure this out. Something to do with `transform: translate(0px, 0px)`
+            // scale: 0.75, //causing an issue where the map disappears or changes colour? figure this out. Something to do with `transform: translate(0px, 0px)`
             stagger: 0.1,
             ease: 'power3.out',
           },
@@ -201,6 +201,72 @@ const pageHome = () => {
         )
     }
 
+    const anim_voyagers = () => {
+      const st_voyagersTitle = new SplitType('.section_voyagers h2', {
+        types: 'words',
+      })
+
+      gsap.utils.toArray('.voyager h3').forEach((heading) => {
+        new SplitType(heading, { types: 'chars' })
+      })
+
+      const tl_voyagers = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.section_voyagers',
+          start: 'top 70%',
+          toggleActions: 'play none none reset',
+          markers: true,
+        },
+      })
+
+      tl_voyagers
+        .from(
+          st_voyagersTitle.words,
+          {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            stagger: 0.04,
+            ease: 'power3.inOut',
+          },
+          0
+        )
+        .from(
+          '.voyager img',
+          {
+            duration: 1,
+            y: 30,
+            opacity: 0,
+            stagger: 0.1,
+            ease: 'power3.inOut',
+          },
+          0.1
+        )
+        .from(
+          '.voyager .text-style-link',
+          {
+            duration: 1,
+            y: 10,
+            opacity: 0,
+            stagger: 0.3,
+            ease: 'power3.inOut',
+          },
+          0.1
+        )
+        .from(
+          '.voyager h3 .char',
+          {
+            duration: 1,
+            y: 10,
+            opacity: 0,
+            stagger: 0.02,
+            ease: 'power3.inOut',
+          },
+          0.2
+        )
+    }
+
+    anim_voyagers()
     anim_intro()
     anim_marquee()
     anim_summarySections()
