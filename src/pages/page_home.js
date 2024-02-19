@@ -13,6 +13,8 @@ const pageHome = () => {
     CustomEase.create('ease_pz', 'M0,0 C0,0.24 0.08,1 1,1 ')
 
     const anim_intro = () => {
+      const el_marquee = document.querySelector('.section_marquee')
+      const clientY = el_marquee.getBoundingClientRect().y
       // Split Texts
       const st_loadingLine = new SplitType('.preloader_line', {
         types: 'words',
@@ -47,20 +49,35 @@ const pageHome = () => {
         .from(
           '.nav_link-item-wrapper',
           1,
-          { opacity: 0, stagger: 0.07, ease: 'ease_pz' },
+          { opacity: 0, stagger: 0.1, ease: 'power3.inOut' },
           7
         )
-        .from(
-          '.countdown_item',
-          1,
-          { opacity: 0, stagger: 0.07, ease: 'power3.inOut' },
-          7
+        .to('.hero_image-fill', 0.5, { top: '0%', ease: 'power3.inOut' }, 7.1)
+        .set('.section_hero-image', { opacity: 1 }, 7.6)
+        .to(
+          '.hero_image-fill',
+          0.5,
+          { bottom: '100%', ease: 'power3.inOut' },
+          7.6
         )
+        .to('.section_hero-image', {
+          y: '40%',
+          scale: 1.1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.section_marquee',
+            start: `top ${clientY}px`,
+            end: 'bottom top',
+            toggleActions: 'play none none reset',
+            scrub: true,
+            markers: true,
+          },
+        })
         .from(
           '.section_hero-image',
-          0.75,
-          { opacity: 0, scale: 1.75, ease: 'ease_pz' },
-          7
+          1.6,
+          { scale: 1.5, ease: 'power3.out' },
+          7.4
         )
         .from(
           st_heroHeading.words,
@@ -69,23 +86,18 @@ const pageHome = () => {
           7
         )
         .from(
+          '.section_hero .button',
+          1,
+          { y: 20, opacity: 0, ease: 'power3.inOut' },
+          7.3
+        )
+        .from(
           '.lottie_journey-home',
           0.5,
           { opacity: 0, ease: 'power3.inOut' },
           7
         )
-        .from(
-          '.form_launch-input-wrapper',
-          1,
-          { y: 25, opacity: 0, ease: 'ease_pz' },
-          7.5
-        )
-        .from(
-          '.form_launch .button',
-          1,
-          { y: 25, opacity: 0, ease: 'ease_pz' },
-          7.6
-        )
+        .to('.marquee_line', 1, { right: '0%', ease: 'power4.inOut' }, 7)
         .from(
           '.marquee_svg path',
           0.7,
@@ -132,8 +144,8 @@ const pageHome = () => {
         scrollTrigger: {
           trigger: '.is-item-01',
           start: 'top 65%',
-          toggleActions: 'play none none reset',
-          markers: true,
+          toggleActions: 'play none none reset', // Add reset at the end for testing
+          // markers: true,
         },
       })
 
