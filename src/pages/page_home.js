@@ -70,7 +70,6 @@ const pageHome = () => {
             end: 'bottom top',
             toggleActions: 'play none none reset',
             scrub: true,
-            markers: true,
           },
         })
         .from(
@@ -144,8 +143,7 @@ const pageHome = () => {
         scrollTrigger: {
           trigger: '.is-item-01',
           start: 'top 65%',
-          toggleActions: 'play none none reset', // Add reset at the end for testing
-          // markers: true,
+          toggleActions: 'play none none reverse', // change end to reverse for testing
         },
       })
 
@@ -153,10 +151,11 @@ const pageHome = () => {
         .from(
           '.summary_accordion-item',
           {
-            duration: 0.5,
+            duration: 1,
             opacity: 0,
-            stagger: 0.2,
-            ease: 'power3.inOut',
+            scale: 0.75, //causing an issue where the map disappears or changes colour? figure this out. Something to do with `transform: translate(0px, 0px)`
+            stagger: 0.1,
+            ease: 'power3.out',
           },
           0
         )
@@ -168,7 +167,7 @@ const pageHome = () => {
             stagger: 0.2,
             ease: 'power3.inOut',
           },
-          0.5
+          0
         )
         .from(
           '.summary_accordion-item .accordion_item-title h1',
@@ -178,7 +177,7 @@ const pageHome = () => {
             stagger: 0.2,
             ease: 'power3.inOut',
           },
-          0.5
+          0
         )
         .from(
           st_firstSummaryText.words,
@@ -189,7 +188,7 @@ const pageHome = () => {
             stagger: 0.01,
             ease: 'power3.inOut',
           },
-          0.5
+          0
         )
         .from(
           '.summary_accordion-item.is-item-01 .button',
@@ -200,20 +199,11 @@ const pageHome = () => {
           },
           0.5
         )
-        .from(
-          '.summary_accordion-item.is-item-01 .button .text-style-button',
-          {
-            duration: 1,
-            opacity: 0,
-            ease: 'power3.inOut',
-          },
-          0.5
-        )
     }
 
-    anim_summarySections()
-    anim_marquee()
     anim_intro()
+    anim_marquee()
+    anim_summarySections()
   }
 
   const summarySections = () => {
