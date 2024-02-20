@@ -2,12 +2,3 @@
   transform-origin: 50% 0%;
   opacity: 0;
 }
-
-/* .section_sponsors-message {
-  position: sticky;
-  top: 50%;
-} */
-
-.section_sponsors {
-  position: relative;
-}

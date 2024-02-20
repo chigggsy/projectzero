@@ -5,6 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SplitType from 'split-type'
 
 // Declaration
+
 const pageHome = () => {
   const animations = () => {
     gsap.registerPlugin(CustomEase)
@@ -143,7 +144,7 @@ const pageHome = () => {
         scrollTrigger: {
           trigger: '.is-item-01',
           start: 'top 65%',
-          toggleActions: 'play none none none', // change end to reverse for testing
+          toggleActions: 'play none none reset', // change end to reverse for testing
         },
       })
 
@@ -153,7 +154,7 @@ const pageHome = () => {
           {
             duration: 1,
             opacity: 0,
-            // scale: 0.75, //causing an issue where the map disappears or changes colour? figure this out. Something to do with `transform: translate(0px, 0px)`
+            //transform: 'scale(0.75)', //causing an issue where the map disappears or changes colour? figure this out. Something to do with `transform: translate(0px, 0px)`
             stagger: 0.1,
             ease: 'power3.out',
           },
@@ -227,6 +228,9 @@ const pageHome = () => {
             opacity: 0,
             stagger: 0.04,
             ease: 'power3.inOut',
+            onStart: () => {
+              ScrollTrigger.refresh()
+            },
           },
           0
         )
@@ -269,17 +273,16 @@ const pageHome = () => {
       const st_sponsorsMessage = new SplitType('.section_sponsors h3', {
         types: 'words',
       })
-
-      const tl_sponsors = gsap.timeline({
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.section_sponsors',
-          start: 'top 70%',
+          start: 'top 50%',
           toggleActions: 'play none none reset',
           markers: true,
         },
       })
 
-      tl_sponsors.from(
+      tl.from(
         st_sponsorsMessage.words,
         1,
         { y: 30, opacity: 0, stagger: 0.01, ease: 'power3.inOut' },
