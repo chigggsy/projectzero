@@ -144,7 +144,7 @@ const pageHome = () => {
         scrollTrigger: {
           trigger: '.is-item-01',
           start: 'top 65%',
-          toggleActions: 'play none none reset', // change end to reverse for testing
+          toggleActions: 'play none none none', // change end to reverse for testing
         },
       })
 
@@ -154,9 +154,17 @@ const pageHome = () => {
           {
             duration: 1,
             opacity: 0,
-            //transform: 'scale(0.75)', //causing an issue where the map disappears or changes colour? figure this out. Something to do with `transform: translate(0px, 0px)`
+            transform: 'scale(0.75)',
             stagger: 0.1,
             ease: 'power3.out',
+            onComplete: () => {
+              const summaryAccordionItemList = document.querySelectorAll(
+                '.summary_accordion-item'
+              )
+              summaryAccordionItemList.forEach((item) => {
+                gsap.set(item, { clearProps: 'transform' })
+              })
+            },
           },
           0
         )
@@ -276,16 +284,18 @@ const pageHome = () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: '.section_sponsors',
-          start: 'top 50%',
-          toggleActions: 'play none none reset',
-          markers: true,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
         },
       })
 
       tl.from(
         st_sponsorsMessage.words,
-        1,
-        { y: 30, opacity: 0, stagger: 0.01, ease: 'power3.inOut' },
+        { duration: 1, y: 30, opacity: 0, stagger: 0.01, ease: 'power3.inOut' },
+        0
+      ).from(
+        '.sponsor_major, .sponsor_minor',
+        { duration: 1, opacity: 0, stagger: 0.08, ease: 'power3.inOut' },
         0
       )
     }

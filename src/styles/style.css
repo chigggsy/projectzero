@@ -2,3 +2,27 @@
   transform-origin: 50% 0%;
   opacity: 0;
 }
+
+h3.section_sponsors-message {
+  position: sticky;
+  top: 50%;
+}
+
+/* .mouse_int-link {
+  width: 3rem;
+  height: 3rem;
+  aspect-ratio: 1/1;
+} */
+
+.mouse_int-spotlight-wrapper {
+  width: 18rem;
+  height: 18rem;
+  aspect-ratio: 1/1;
+}
+
+.mouse_int-spotlight {
+  width: 15.5rem;
+  height: 15.5rem;
+  aspect-ratio: 1/1;
+  background-color: #c7c5c5;
+}

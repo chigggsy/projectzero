@@ -9,8 +9,6 @@ const pageGlobal = () => {
   const globalCustomCursor = () => {
     // Cursor rotating and following the mouse
     let $compass = $('.compass_container')
-    // let x = 0
-    // let y = 0
     let mouseX = 0
     let mouseY = 0
     let speed = 0
@@ -53,11 +51,6 @@ const pageGlobal = () => {
         },
         ease: 'power3.out', // ease out for smoother animation
       })
-    })
-
-    // When hovering over the button, toggle the classes
-    $('.button').on('mouseenter mouseleave', function () {
-      // $(".compass_container").toggleClass("mouse_int-link");
     })
 
     $(document).on(
