@@ -131,7 +131,6 @@ const pageJourney = () => {
             trigger: tags,
             start: 'top 90%',
             toggleActions: 'play none none reset',
-            markers: true,
           },
         })
         tl.from(
