@@ -130,7 +130,7 @@ const pageJourney = () => {
           scrollTrigger: {
             trigger: tags,
             start: 'top 90%',
-            toggleActions: 'play none none reset',
+            toggleActions: 'play none none none',
           },
         })
         tl.from(
