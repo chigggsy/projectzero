@@ -26,3 +26,7 @@ h3.section_sponsors-message {
   aspect-ratio: 1/1;
   background-color: #c7c5c5;
 }
+
+.character_image-wrapper img {
+  scale: 1;
+}

@@ -1,6 +1,7 @@
 import Splide from '@splidejs/splide'
 import gsap from 'gsap'
 import CustomEase from 'gsap/CustomEase'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import $ from 'jquery'
 import SplitType from 'split-type'
 import '@splidejs/splide/css/core'
@@ -8,36 +9,153 @@ import '@splidejs/splide/css/core'
 const pageJourney = () => {
   const animations = () => {
     gsap.registerPlugin(CustomEase)
+    gsap.registerPlugin(ScrollTrigger)
     CustomEase.create('ease_pz', 'M0,0 C0,0.24 0.08,1 1,1 ')
 
-    // Split Texts
-    const st_heroHeading = new SplitType('.section_heading h2', {
-      types: 'words',
-    })
+    const anim_intro = () => {
+      // Split Texts
+      const st_heroHeading = new SplitType('.section_heading h2', {
+        types: 'words',
+      })
 
-    // Animation
-    gsap.set('.section_heading-title-wrapper', { opacity: 1 })
-    const tl_page = gsap.timeline()
-    tl_page
-      .to(
-        '.section_heading .image-hero',
-        1.3,
-        { scale: 1, ease: 'power3.inOut' },
-        0
+      // Animation
+      gsap.set('.section_heading-title-wrapper', { opacity: 1 })
+      const tl_page = gsap.timeline()
+      tl_page
+        .to(
+          '.section_heading .image-hero',
+          1.3,
+          { scale: 1, ease: 'power3.inOut' },
+          0
+        )
+        .from(
+          '.section_heading h1',
+          1,
+          { y: 30, opacity: 0, ease: 'power3.inOut' },
+          0.6
+        )
+        .from(
+          st_heroHeading.words,
+          1.25,
+          { y: 30, opacity: 0, stagger: 0.01, ease: 'power2.inOut' },
+          0.4
+        )
+        .to('.cursor_wrapper', 0.5, { opacity: 1 }, 0)
+    }
+    const anim_journeyAbout = () => {
+      const journeyAboutSectionList = document.querySelectorAll(
+        '.section_journey-about-wrapper .section_journey-about'
       )
-      .from(
-        '.section_heading h1',
-        1,
-        { y: 30, opacity: 0, ease: 'power3.inOut' },
-        0.6
+
+      journeyAboutSectionList.forEach((section) => {
+        const st_H1 = new SplitType(section.querySelector('h1'), {
+          types: 'words',
+        })
+        const st_H2 = new SplitType(section.querySelector('h2'), {
+          types: 'words',
+        })
+        const st_paragraph = new SplitType(section.querySelector('p'), {
+          types: 'lines',
+        })
+        const tl = gsap.timeline({
+          defaults: {
+            ease: 'power2.inOut',
+            opacity: 0,
+          },
+          scrollTrigger: {
+            trigger: section.querySelector('h1'),
+            toggleActions: 'play none none none',
+            start: 'top 85%',
+            end: 'bottom top',
+          },
+        })
+
+        tl.from(st_H1.words, { duration: 0.75, y: 15, stagger: 0.05 }, 0)
+          .from(
+            st_H2.words,
+            {
+              duration: 0.75,
+              y: 15,
+              stagger: 0.05,
+            },
+            0
+          )
+          .from(
+            st_paragraph.lines,
+            {
+              duration: 0.75,
+              y: 15,
+              stagger: 0.05,
+            },
+            0.2
+          )
+      })
+    }
+    const anim_voyagerImages = () => {
+      const voyagerImagesList = document.querySelectorAll(
+        '.character_image-wrapper'
       )
-      .from(
-        st_heroHeading.words,
-        1.25,
-        { y: 30, opacity: 0, stagger: 0.01, ease: 'power2.inOut' },
-        0.4
-      )
-      .to('.cursor_wrapper', 0.5, { opacity: 1 }, 0)
+      voyagerImagesList.forEach((imageWrapper) => {
+        const image = imageWrapper.querySelector('img')
+        gsap.set(image, { transformOrigin: '50% 0%' })
+        const tl = gsap.timeline()
+        tl.from(image, {
+          scale: 1.3,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: image,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        })
+      })
+    }
+    const anim_voyagerDetails = () => {
+      const characterWrapperList =
+        document.querySelectorAll('.character_wrapper')
+      characterWrapperList.forEach((characterWrapper) => {
+        const tags = characterWrapper.querySelector('h3')
+        const name = characterWrapper.querySelector('h2')
+        const paragraph = characterWrapper.querySelector('p')
+
+        const st_tags = new SplitType(tags, { types: 'words' })
+        const st_name = new SplitType(name, { types: 'words' })
+        const st_paragraph = new SplitType(paragraph, { types: 'lines' })
+
+        const tl = gsap.timeline({
+          defaults: {
+            ease: 'power3.inOut',
+          },
+          scrollTrigger: {
+            trigger: tags,
+            start: 'top 90%',
+            toggleActions: 'play none none reset',
+            markers: true,
+          },
+        })
+        tl.from(
+          st_tags.words,
+          { duration: 1, opacity: 0, y: 30, stagger: 0.02 },
+          0
+        )
+          .from(
+            st_name.words,
+            { duration: 0.5, opacity: 0, y: 20, stagger: 0.05 },
+            0.35
+          )
+          .from(
+            st_paragraph.lines,
+            { duration: 1, opacity: 0, y: 15, stagger: 0.03 },
+            0.2
+          )
+      })
+    }
+
+    anim_voyagerDetails()
+    anim_voyagerImages()
+    anim_intro()
+    anim_journeyAbout()
   }
 
   const characterSectionFunctionality = () => {

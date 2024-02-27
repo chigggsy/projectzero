@@ -63,13 +63,13 @@ const pageHome = () => {
         )
         .to('.section_hero-image', {
           y: '40%',
-          scale: 1.1,
+          // scale: 1.1,
           ease: 'none',
           scrollTrigger: {
             trigger: '.section_marquee',
             start: `top ${clientY}px`,
             end: 'bottom top',
-            toggleActions: 'play none none reset',
+            toggleActions: 'play none none none',
             scrub: true,
           },
         })
@@ -130,7 +130,6 @@ const pageHome = () => {
         .to('#marquee-1', { x: '-22%' }, 0)
         .to('#marquee-2', { x: '-22%' }, 0)
     }
-
     const anim_summarySections = () => {
       const firstSummaryText = document.querySelector(
         '.is-item-01 .accordion_large-text'
@@ -209,7 +208,6 @@ const pageHome = () => {
           0.5
         )
     }
-
     const anim_voyagers = () => {
       const st_voyagersTitle = new SplitType('.section_voyagers h2', {
         types: 'words',
@@ -276,7 +274,6 @@ const pageHome = () => {
           0.2
         )
     }
-
     const anim_sponsors = () => {
       const st_sponsorsMessage = new SplitType('.section_sponsors h3', {
         types: 'words',
