@@ -3,17 +3,6 @@
   opacity: 0;
 }
 
-h3.section_sponsors-message {
-  position: sticky;
-  top: 50%;
-}
-
-/* .mouse_int-link {
-  width: 3rem;
-  height: 3rem;
-  aspect-ratio: 1/1;
-} */
-
 .mouse_int-spotlight-wrapper {
   width: 18rem;
   height: 18rem;

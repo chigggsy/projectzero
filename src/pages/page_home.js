@@ -371,8 +371,20 @@ const pageHome = () => {
     })
   }
 
+  const stickyParagraph = () => {
+    const stickyElement = document.querySelector('.section_sponsors-message')
+    if (window.innerWidth <= 991) {
+      stickyElement.style.position = 'relative'
+    } else {
+      stickyElement.style.position = 'sticky'
+    }
+  }
+
   animations()
   summarySections()
+  stickyParagraph()
+
+  window.addEventListener('resize', stickyParagraph)
 }
 
 // Activation
