@@ -1,11 +1,12 @@
 import './styles/style.css'
 import pageGlobal from './pages/global'
-import pageBlogTemplate from './pages/page_blogtemplate'
 import pageClimateImportance from './pages/page_climateImportance'
 import pageExpeditionDispatches from './pages/page_expeditionDispatches'
 import pageHome from './pages/page_home'
 import pageJourney from './pages/page_journey'
 import pageSeries from './pages/page_series'
+
+import pageBlogTemplate from '.pages/page_blogTemplate'
 
 // Global
 pageGlobal()
