@@ -1,5 +1,6 @@
 import './styles/style.css'
 import pageGlobal from './pages/global'
+import pageBlogTemplate from './pages/page_blogtemplate'
 import pageClimateImportance from './pages/page_climateImportance'
 import pageExpeditionDispatches from './pages/page_expeditionDispatches'
 import pageHome from './pages/page_home'
@@ -20,4 +21,6 @@ if (window.location.pathname === '/') {
   pageJourney()
 } else if (window.location.pathname === '/series') {
   pageSeries()
+} else if (window.location.pathname.startsWith('/blog-posts/')) {
+  pageBlogTemplate()
 }
