@@ -41,6 +41,17 @@ const pageJourney = () => {
           0.4
         )
         .to('.cursor_wrapper', 0.5, { opacity: 1 }, 0)
+      /* .to('.section_heading .image-hero', {
+          y: '15%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.section_heading',
+            start: `bottom 100%`,
+            end: 'bottom 0%',
+            toggleActions: 'play none none none',
+            scrub: true,
+          },
+        }) */
     }
     const anim_journeyAbout = () => {
       const journeyAboutSectionList = document.querySelectorAll(

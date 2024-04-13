@@ -1,41 +1,57 @@
 import gsap from 'gsap'
 import CustomEase from 'gsap/CustomEase'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import $ from 'jquery'
 import SplitType from 'split-type'
 
 const pageClimateImportance = () => {
   const animation = () => {
-    // Animations ------------------------------------------------------------------------------------------------------------
-    gsap.registerPlugin(CustomEase)
-    CustomEase.create('ease_pz', 'M0,0 C0,0.24 0.08,1 1,1 ')
-    // Split Texts
-    const st_heroHeading = new SplitType('.section_heading h2', {
-      types: 'words',
-    })
+    gsap.registerPlugin(ScrollTrigger)
+    const anim_intro = () => {
+      gsap.registerPlugin(CustomEase)
+      CustomEase.create('ease_pz', 'M0,0 C0,0.24 0.08,1 1,1 ')
+      // Split Texts
+      const st_heroHeading = new SplitType('.section_heading h2', {
+        types: 'words',
+      })
 
-    // Animation
-    gsap.set('.section_heading-title-wrapper', { opacity: 1 })
-    const tl_page = gsap.timeline()
-    tl_page
-      .to(
-        '.section_heading .image-hero',
-        1.3,
-        { scale: 1, ease: 'power3.inOut' },
-        0
-      )
-      .from(
-        '.section_heading h1',
-        1,
-        { y: 30, opacity: 0, ease: 'power3.inOut' },
-        0.6
-      )
-      .from(
-        st_heroHeading.words,
-        1.25,
-        { y: 30, opacity: 0, stagger: 0.01, ease: 'power2.inOut' },
-        0.4
-      )
-      .to('.cursor_wrapper', 0.5, { opacity: 1 }, 0)
+      // Animation
+      gsap.set('.section_heading-title-wrapper', { opacity: 1 })
+      const tl_page = gsap.timeline()
+      tl_page
+        .to(
+          '.section_heading .image-hero',
+          1.3,
+          { scale: 1, ease: 'power3.inOut' },
+          0
+        )
+        .from(
+          '.section_heading h1',
+          1,
+          { y: 30, opacity: 0, ease: 'power3.inOut' },
+          0.6
+        )
+        .from(
+          st_heroHeading.words,
+          1.25,
+          { y: 30, opacity: 0, stagger: 0.01, ease: 'power2.inOut' },
+          0.4
+        )
+        .to('.cursor_wrapper', 0.5, { opacity: 1 }, 0)
+      /* .to('.section_heading .image-hero', {
+          y: '15%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.section_heading',
+            start: `bottom 100%`,
+            end: 'bottom 0%',
+            toggleActions: 'play none none none',
+            scrub: true,
+          },
+        }) */
+    }
+
+    anim_intro()
   }
 
   // Accordion ------------------------------------------------------

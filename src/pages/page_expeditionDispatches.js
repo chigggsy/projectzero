@@ -1,10 +1,12 @@
 import gsap from 'gsap'
 import CustomEase from 'gsap/CustomEase'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SplitType from 'split-type'
 
 const pageExpeditionDispatches = () => {
   const animations = () => {
     // Register plugins
+    gsap.registerPlugin(ScrollTrigger)
     gsap.registerPlugin(CustomEase)
     CustomEase.create('ease_pz', 'M0,0 C0,0.24 0.08,1 1,1 ')
 
@@ -35,6 +37,17 @@ const pageExpeditionDispatches = () => {
         0.4
       )
       .to('.cursor_wrapper', 0.5, { opacity: 1 }, 0)
+    /* .to('.section_heading .image-hero', {
+        y: '15%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.section_heading',
+          start: `bottom 100%`,
+          end: 'bottom 0%',
+          toggleActions: 'play none none none',
+          scrub: true,
+        },
+      }) */
   }
 
   const updateNanookStats = async () => {
