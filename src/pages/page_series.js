@@ -12,13 +12,13 @@ const pageSeries = () => {
     CustomEase.create('ease_pz', 'M0,0 C0,0.24 0.08,1 1,1 ')
 
     // Split Texts
-    const st_heroHeading = new SplitType('.paragraph-style-series', {
-      types: 'words',
+    const st_heroHeading = new SplitType('.paragraph-style-series.is-split', {
+      types: 'words chars',
     })
 
     // Animation
-    const tl_page = gsap.timeline()
-    tl_page
+    const tl_intro = gsap.timeline()
+    tl_intro
       .to(
         '.section_heading .image-hero',
         1.3,
@@ -38,17 +38,29 @@ const pageSeries = () => {
     const tl_words = gsap.timeline({
       scrollTrigger: {
         trigger: '.paragraph-style-series',
-        start: 'top 130%', // starts the animation when the top of the trigger hits the center of the viewport
+        start: 'top 90%', // starts the animation when the top of the trigger hits the center of the viewport
         end: 'bottom 50%',
         scrub: true,
       },
     })
 
-    tl_words.from(st_heroHeading.words, 1, {
-      y: 60,
+    tl_words.from(st_heroHeading.chars, 0.05, {
+      opacity: 0.2,
+      stagger: 0.01,
+      ease: 'none',
+    })
+
+    const test_tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.section_coming-soon p',
+        start: 'top 75%',
+        end: 'bottom 75%',
+        scrub: true,
+      },
+    })
+
+    test_tl.to('.image-hero.is-series', {
       opacity: 0,
-      stagger: 0.0175,
-      ease: 'power3.inOut',
     })
   }
 
@@ -92,8 +104,39 @@ const pageSeries = () => {
     slider1()
   }
 
+  const formSubmit = () => {
+    const formButtonBrand = document.querySelector(
+      '.register_form-wrapper .button'
+    )
+    const formButtonWebflow = document.querySelector('.form_submit-button')
+    console.log(formButtonWebflow.innerHTML)
+
+    const formSuccess = document.querySelector('.form_success')
+
+    formButtonBrand.addEventListener('click', () => {
+      formButtonWebflow.click()
+    })
+
+    // Hide the brand button when the success message is shown
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.attributeName === 'style' &&
+          formSuccess.style.display === 'block'
+        ) {
+          formButtonBrand.style.display = 'none'
+        }
+      })
+    })
+    observer.observe(formSuccess, {
+      attributes: true,
+      attributeFilter: ['style'],
+    })
+  }
+
   animation()
   splideGallery()
+  formSubmit()
 }
 
 export default pageSeries

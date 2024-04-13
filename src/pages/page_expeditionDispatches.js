@@ -73,7 +73,9 @@ const pageExpeditionDispatches = () => {
   }
 
   animations()
-  updateNanookStats()
+  window.addEventListener('load', () => {
+    updateNanookStats()
+  })
 }
 
 export default pageExpeditionDispatches
